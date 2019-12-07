@@ -25,18 +25,19 @@
  ***********************************************************************************/
 //Includes
 #include <Servo.h>          //include the servo library for working with servo objects
+#include <softwareSerial.h>
 
 //Defines
-const int PAN = 10;         //Pan Servo Digital Pin
-const int TILT = 11;        //Tilt Servo Digital Pin
-const int LASER = 2;        //Laser Digital Pin
+const int PAN = 3;         //Pan Servo Digital Pin
+const int TILT = 5;        //Tilt Servo Digital Pin
+const int LASER = 4;        //Laser Digital Pin
 
 
-const int PAN_MIN = 40;     // minimum pan servo range, value should be between 0 and 180 and lower than PAN_MAX
-const int PAN_MAX = 140;    // maximum pan servo range, value should be between 0 and 180 and more than PAN_MIN
+const int PAN_MIN = 10;     // minimum pan servo range, value should be between 0 and 180 and lower than PAN_MAX
+const int PAN_MAX = 170;    // maximum pan servo range, value should be between 0 and 180 and more than PAN_MIN
 
-const int TILT_MIN = 60;    // minimum tilt servo range, value should be between 0 and 180 and lower than TILT_MAX
-const int TILT_MAX = 100;   // maximum tilt servo range, value should be between 0 and 180 and more than TILT_MIN
+const int TILT_MIN = 25;    // minimum tilt servo range, value should be between 0 and 180 and lower than TILT_MAX
+const int TILT_MAX = 125;   // maximum tilt servo range, value should be between 0 and 180 and more than TILT_MIN
 
 const int SPEED_MIN = 10;   // minimum interpolation speed (less than 5 not recommended)
 const int SPEED_MAX = 10;   // maximum interpolation speed (Lower SPEED_MAX values mean that the program will cycle more quickly, leading to an increased occurance of pausing. Adjust ROLL_MAX accordingly)
@@ -69,7 +70,7 @@ int debounceDelay = 50;    // the amount of time that that a button must be held
 
 void setup() 
 { 
-  
+  Serial.begin(9600);
   //initialize servos
   panServo.attach(PAN);  // attaches/activates the pan servo on pin PAN 
   tiltServo.attach(TILT);  // attaches/activates the tilt servo on pin TILT 
